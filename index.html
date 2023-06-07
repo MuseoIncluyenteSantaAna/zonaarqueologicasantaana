@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Zona Arqueológica</title>
+  <style>
+    body {
+      background-color: #222;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+      font-family: "Verdana", sans-serif;
+      background-color: #333;
+    }
+
+    #home-button {
+      background-color: #555555;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 20px;
+      margin-right: 10px;
+    }
+    
+    #home-button:hover {
+      background-color: #777777;
+    }
+    
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      color: white;
+    }
+    
+    .popup-content {
+      text-align: center;
+    }
+    
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      color: white;
+    }
+    
+    .button {
+      background-color: #777777;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    
+    .button:hover {
+      background-color: #999999;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <span>Zona Arqueológica</span>
+    <a href="https://museosantaana.netlify.app/" id="home-button">Home</a>
+  </h1>
+  
+  <div class="gallery">
+    <img src="1.jpg" alt="Imagen 1" onclick="openPopup(1)">
+    <img src="2.jpg" alt="Imagen 2" onclick="openPopup(2)">
+    <img src="5.jpg" alt="Imagen 3" onclick="openPopup(3)">
+    <img src="4.jpg" alt="Imagen 4" onclick="openPopup(4)">
+    <img src="3.jpg" alt="Imagen 5" onclick="openPopup(5)">
+    <img src="6.jpg" alt="Imagen 6" onclick="openPopup(6)">
+    <img src="7.jpg" alt="Imagen 7" onclick="openPopup(7)">
+    <img src="8.jpg" alt="Imagen 8" onclick="openPopup(8)">
+    <img src="9.jpg" alt="Imagen 9" onclick="openPopup(9)">
+  </div>
+  
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <h2 id="popup-title">Información de la imagen</h2>
+      <p id="popup-description">Aquí puedes agregar la información que deseas mostrar sobre la imagen seleccionada.</p>
+      <button class="button" onclick="toggleAudio()">Reproducir audio</button>
+    </div>
+  </div>
+
+  <script>
+    var audioElement;
+
+    function openPopup(imageId) {
+      var popup = document.getElementById("popup");
+      var title = document.getElementById("popup-title");
+      var description = document.getElementById("popup-description");
+
+      popup.style.display = "block";
+
+      // Actualizar la información y el contenido de la ventana emergente según la imagen seleccionada
+      switch (imageId) {
+        case 1:
+          title.textContent = "Vasija Efigie de Santa Ana del Valle";
+          description.textContent = "Esta vasija efigie o urna funeraria es una representación del dios zapoteco de la lluvia, conocido como Cocijo o el Señor del Rayo. Urnas similares se encuentran en las tumbas o entierros familiares instalados debajo de la casa. Las urnas en si hasta ahora nunca han contenido restos de difuntos y por eso es preferible el término vasija efigie. Fueron elaboradas en pasta gris o café por alfareros especialistas a través de la técnica de modelar a mano y el uso de moldes; después ensamblaron sus diversas partes para completar la vasija. Este ejemplar se fecha al periodo Clásico Tardío (550 d.C. – 850 d.C.) cuando Monte Albán alcanzó su máxima extensión.";
+          popup.dataset.audio = "Foto1-Sala1-SAV.mp3";
+          break;
+        case 2:
+          title.textContent = "Piedra con la representación de la muerte";
+          description.textContent = "La muerte está presente en cualquier cultura, se puede representar de diversas formas. Durante la época prehispánica se pensaba que la muerte era enviada por una deidad maligna. En esta piedra labrada encontrada en Santa Ana se puede observar la forma de un cráneo que representa a la muerte.";
+          popup.dataset.audio = "Foto2-Sala1-SAV.mp3";
+          break;
+        case 3:
+          title.textContent = "Máscaras de Cocijo";
+          description.textContent = "Esta es una de las tres urnas que presentan máscaras de Cocijo, la deidad de los relámpagos y de la luvia en la cultura zapoteca. Su diseño indica que probablemente se elaboraron entre 500 y 800 d.C.Se cree que estas urnas representaban ancestros venerados, que, a través de la muerte y la herencia, habían adquirido algunos rasgos de lo sobrenatural.";
+          popup.dataset.audio = "Foto3-Sala1-SAV.mp3";
+          break;
+        case 4:
+          title.textContent = "Información de la imagen 4";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen 4.";
+          popup.dataset.audio = "audio4.mp3";
+          break;
+        case 5:
+          title.textContent = "Información de la imagen 5";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen 5.";
+          popup.dataset.audio = "audio5.mp3";
+          break;
+        case 6:
+          title.textContent = "Información de la imagen 6";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen 6.";
+          popup.dataset.audio = "audio6.mp3";
+          break;
+        case 7:
+          title.textContent = "Información de la imagen 7";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen 7.";
+          popup.dataset.audio = "audio7.mp3";
+          break;
+        case 8:
+          title.textContent = "Información de la imagen 8";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen 8.";
+          popup.dataset.audio = "audio8.mp3";
+          break;
+        case 9:
+          title.textContent = "Información de la imagen 9";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen 9.";
+          popup.dataset.audio = "audio9.mp3";
+          break;
+        default:
+          title.textContent = "Información de la imagen";
+          description.textContent = "Aquí puedes agregar la información que deseas mostrar sobre la imagen seleccionada.";
+          popup.dataset.audio = "";
+      }
+    }
+    
+    function closePopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+    
+    function toggleAudio() {
+      var popup = document.getElementById("popup");
+      var audioFile = popup.dataset.audio;
+      
+      if (audioFile) {
+        if (audioElement && !audioElement.paused) {
+          audioElement.pause();
+        } else {
+          audioElement = new Audio(audioFile);
+          audioElement.play();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
